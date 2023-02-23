@@ -3,5 +3,5 @@ scikit-image==0.18.1
 matplotlib==3.5.3
 pooch==v1.3.0
 ipympl==0.5.2
-
+jupyter-matplotlib
 
