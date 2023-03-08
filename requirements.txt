@@ -1,6 +1,6 @@
 numpy
 matplotlib
-cronomaxrf
+cronomaxrf==0.0.12
 pandas
 ipywidgets
 iqcampy
