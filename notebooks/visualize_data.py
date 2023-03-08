@@ -1,10 +1,7 @@
 ####### IMPORT PACKAGES #######
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
-
-from IPython import get_ipython
 
 import ipywidgets as wg
 from ipywidgets import Layout, Button, Box
@@ -110,6 +107,7 @@ def overview():
                 tuple(['FTIR','MFT']): [output_FTIR,tabs_MFT],
                 tuple(['MFT','RS']): [tabs_MFT,tabs_RS],
                 tuple(['MFT','Raman','RS']): [tabs_MFT,output_Raman,tabs_RS],
+                tuple(['FTIR','MFT','RS']): [output_FTIR,tabs_MFT,tabs_RS],
                 tuple(['FTIR','MFT','Raman','RS']): [output_FTIR,tabs_MFT,output_Raman,tabs_RS]}
 
             list_tabs = dict_tabs[tuple(list(techniques))]       
@@ -138,9 +136,12 @@ def overview():
                 tabs_techniques.set_title(3,list(techniques)[3])
 
             
-            with output_MFT:
+            with output_MFT_SP:
                 clear_output()
                 print('plot MFT data')
+                
+
+                
 
 
             
@@ -149,7 +150,7 @@ def overview():
                 @wg.interact(**boxes)
                 
                 def update(**kwargs):
-                    
+                    clear_output()
                     for f in fnames_list:
                         clear_output()
                                        
@@ -159,8 +160,7 @@ def overview():
 
             with output_RS_SP_plot:               
             
-                fig, ax = plt.subplots(1,1, figsize = (15,10))
-                sns.set()
+                fig, ax = plt.subplots(1,1, figsize = (15,10))                
                 fs = 24
 
                 
@@ -187,9 +187,8 @@ def overview():
 
          
             with output_RS_CIELAB_plot:
-
-                fig, ax = plt.subplots(2,2, figsize=(10, 10), gridspec_kw=dict(width_ratios=[1, 2], height_ratios=[2, 1]))
-                sns.set()
+                
+                fig, ax = plt.subplots(2,2, figsize=(10, 10), gridspec_kw=dict(width_ratios=[1, 2], height_ratios=[2, 1]))                
                 fs = 20
 
                 Lb = ax[0,0]
@@ -203,6 +202,8 @@ def overview():
                 AB.set_ylabel("CIE $b^*$", fontsize=fs)
                 aL.set_xlabel("CIE $a^*$", fontsize=fs)
                 aL.set_ylabel("CIE $L^*$", fontsize=fs) 
+
+                
 
                 for file in fnames_list[0]:
                     clear_output()
@@ -225,9 +226,11 @@ def overview():
                            
 
             with output_RS_SP:
+                clear_output()
                 display(wg.HBox([output_RS_SP_plot,output_RS_fname]))
 
             with output_RS_CIELAB:
+                clear_output()
                 display(wg.HBox([output_RS_CIELAB_plot,output_RS_fname]))
                 
             display(tabs_techniques)
