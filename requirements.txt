@@ -1,6 +1,7 @@
 numpy==1.20.3
 scikit-image==0.18.1
 matplotlib==3.5.3
-pandas==1.3.5
 pooch==v1.3.0
 cronomaxrf
+pandas
+ipywidgets
